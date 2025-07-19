@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <link
+
+     <link
       href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
       rel="stylesheet"
     />
@@ -19,7 +19,6 @@
 
     <title>Rock, paper, scissors</title>
     <style>
-
       :root {
         /* Light mode */
         --bg: #f2f5f9;
@@ -49,12 +48,12 @@
         --disabled: #3a3d44;
       }
 
-      * {
+     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Outfit", sans-serif;
         text-decoration: none;
+        list-style-type: none;
       }
 
       a {
@@ -70,7 +69,7 @@
         font-family: "Poppins", sans-serif;
       }
 
-      h1,
+      h1, h2,
       .title {
         font-family: "Orbitron", sans-serif;
       }
@@ -78,7 +77,9 @@
       h1 {
         color: var(--text);
         text-align: center;
+        font-family: "Orbitron", sans-serif;
       }
+
 
       header {
         display: flex;
@@ -102,57 +103,66 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 20px;
+        gap: 12px;
       }
 
-      .game-rule {
+     .game-rule {
         position: fixed;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
         top: -60px;
         left: 0;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: start;
         flex-direction: column;
-        padding-left: 20px ;
-        padding-right: 10px;
         padding-bottom: 30px;
         border-top-left-radius: 1.1rem;
         border-top-right-radius: 1.1rem;
-        z-index: 999;
+        z-index: 19990;
         gap: 10px;
         width: 100vw;
         line-height: 2;
         background-color: var(--border);
         color: var(--text);
-        overflow: hidden;
         max-height: 0;
         transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        text-align: left;
       }
 
-       .game-rule.open {
+      .game-rule.open {
         max-height: 100vh;
         bottom: 0;
         top: 60px;
-        
+      }
+
+      .game-rule h3 {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        cursor: pointer;
+        font-weight: 300;
       }
 
       .game-rule li {
-        line-height: 1.2;
+        border-bottom: 1px solid rgb(146, 143, 143);
+        line-height: 1.6;
         margin-bottom: 8px;
         word-spacing: 3;
+        padding: 0 10px;
       }
 
-      .game-rule ul {
-        padding-left: 5px;
+      .game-rule h2:first-of-type {
+        padding-top: 50px;
       }
 
       .game-rule button {
         width: 130px;
-        height: 50px;
+        min-height: 50px;
         font-weight: bold;
-        border-radius: 0.7rem;
         background-color: var(--primary);
         color: var(--text);
+        border-radius: 0.7rem;
         border: none;
       }
 
@@ -261,7 +271,6 @@
         color: var(--accent);
       }
 
-     
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -274,7 +283,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(4px);
         opacity: 0;
-        pointer-events:none;
+        pointer-events: none;
         justify-content: center;
         transition: opacity 0.5s ease-in-out;
       }
@@ -289,7 +298,7 @@
         max-width: 600px;
         font-weight: bolder;
         font-size: large;
-        border-radius: .7rem;
+        border-radius: 0.7rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         padding: 10px 20px;
         display: flex;
@@ -325,7 +334,7 @@
         background-color: var(--success);
       }
 
-       .modal-overlay.active {
+      .modal-overlay.active {
         opacity: 1;
         pointer-events: auto;
       }
@@ -422,30 +431,33 @@
       </div>
     </div>
     <div class="game-rule-container">
-<div class="game-rule">
-      <h2>Instructions:</h2>
-      <ul>
-        <li>The computer picks one of rock, paper and scissors.</li>
-        <li>You also get to pick one of the list.</li>
-        <li>Whatever you pick is compared with Whatever the computer picks.</li>
-        <li>
-          A winner is decided based on the rules of the game below and the
-          scoreboard will be updated.
-        </li>
-        <li>Strive to have more wins than both ties and losses.</li>
-        <li>
-          Like the previous game, you also get the chance to reset the
-          scoreboard. Good luck!!
-        </li>
-      </ul>
-      <h2>Game Rule:</h2>
-      <ul>
-        <li>Rock breaks Scissors but get covered by paper</li>
-        <li>Paper covers Rock but gets torn/cut by Scissors</li>
-        <li>Scissors tears/cuts Paper but gets broken by Rock</li>
-      </ul>
-      <button class="js-game-rule-btn">Close</button>
-    </div>
+      <div class="game-rule">
+        <h3 id="close-btn">Close</h3>
+        <h2>Instructions:</h2>
+        <ul>
+          <li>The computer picks one of rock, paper and scissors.</li>
+          <li>You also get to pick one of the list.</li>
+          <li>
+            Whatever you pick is compared with Whatever the computer picks.
+          </li>
+          <li>
+            A winner is decided based on the rules of the game below and the
+            scoreboard will be updated.
+          </li>
+          <li>Strive to have more wins than both ties and losses.</li>
+          <li>
+            Like the previous game, you also get the chance to reset the
+            scoreboard. Good luck!!
+          </li>
+        </ul>
+        <h2>Game Rule:</h2>
+        <ul>
+          <li>Rock breaks Scissors but get covered by paper</li>
+          <li>Paper covers Rock but gets torn/cut by Scissors</li>
+          <li>Scissors tears/cuts Paper but gets broken by Rock</li>
+        </ul>
+        <button class="js-game-rule-btn">Close</button>
+      </div>
     </div>
     <div class="game-container">
       <h1>A Rock, Paper and Scissors Game</h1>
@@ -479,7 +491,7 @@
         </div>
       </div>
       <p class="link">
-        If you would like to go back to the coin flip game?
+        If you would like to go back to the coin flip game,
         <a href="https://ll-vn.github.io/coin-game/" class="coin-link">Click here.</a> By the way, it
         was nice having you around.
       </p>
@@ -510,7 +522,8 @@
       let isStarted = false;
       let isStopped = true;
       resetButton.disabled = true;
-      const errorMsg = "Opps!!! Can't play game. You have not started the game.";
+      const errorMsg =
+        "Opps!!! Can't play game. You have not started the game.";
       stopBtn.disabled = true;
       const lightIconSVG = `<svg id="lightIcon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
   <path d="M12 4.5a1 1 0 0 1 1-1V2a1 1 0 0 0-2 0v1.5a1 1 0 0 1 1 1Zm0 15a1 1 0 0 1 1 1V22a1 1 0 0 0-2 0v-1.5a1 1 0 0 1 1-1Zm9-7a1 1 0 0 1 1 1h1.5a1 1 0 0 0 0-2H22a1 1 0 0 1-1 1ZM3 12a1 1 0 0 1-1-1H.5a1 1 0 0 0 0 2H2a1 1 0 0 1 1-1Zm15.364 6.364a1 1 0 0 1 1.414 0l1.06 1.06a1 1 0 1 0 1.415-1.415l-1.06-1.06a1 1 0 0 1-1.415 1.415Zm-12.728 0a1 1 0 0 1-1.415-1.415l1.06-1.06a1 1 0 1 1 1.415 1.415l-1.06 1.06ZM17.657 6.343a1 1 0 0 1 0-1.415l1.06-1.06a1 1 0 1 1 1.415 1.415l-1.06 1.06a1 1 0 0 1-1.415 0ZM6.343 6.343a1 1 0 0 1-1.415 0l-1.06-1.06a1 1 0 0 1 1.415-1.415l1.06 1.06a1 1 0 0 1 0 1.415ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" />
@@ -546,14 +559,19 @@
 
       // Game rule functionality
       showGameRule.addEventListener("click", () => {
-        document.querySelector(".game-rule").classList.add('open');
+        document.querySelector(".game-rule").classList.add("open");
         document.body.style.overflow = "hidden";
       });
 
       closeGameRule.addEventListener("click", () => {
-        document.querySelector(".game-rule").classList.remove('open')
+        document.querySelector(".game-rule").classList.remove("open");
         document.body.style.overflow = "";
       });
+
+      document.querySelector('#close-btn').addEventListener("click", () => {
+        document.querySelector(".game-rule").classList.remove("open");
+        document.body.style.overflow = "";
+      })
 
       // Sound toggle functionality
       soundToggleBtn.addEventListener("click", () => {
@@ -569,6 +587,17 @@
         },
         { once: true }
       );
+
+      let wasPlaying = false;
+
+      document.addEventListener("visibilityChange", () => {
+        if (document.hidden) {
+          wasPlaying = !backgroundSound.paused;
+          backgroundSound.pause();
+        } else {
+          if (wasPlaying) backgroundSound.play();
+        }
+      });
 
       startBtn.addEventListener("click", () => {
         if (startBtn.disabled) return;
