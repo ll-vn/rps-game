@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-     <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
       rel="stylesheet"
     />
@@ -48,7 +48,7 @@
         --disabled: #3a3d44;
       }
 
-     * {
+      * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -69,7 +69,8 @@
         font-family: "Poppins", sans-serif;
       }
 
-      h1, h2,
+      h1,
+      h2,
       .title {
         font-family: "Orbitron", sans-serif;
       }
@@ -79,7 +80,6 @@
         text-align: center;
         font-family: "Orbitron", sans-serif;
       }
-
 
       header {
         display: flex;
@@ -106,7 +106,7 @@
         gap: 12px;
       }
 
-     .game-rule {
+      .game-rule {
         position: fixed;
         overflow-y: scroll;
         scroll-behavior: smooth;
@@ -141,7 +141,8 @@
         top: 10px;
         left: 20px;
         cursor: pointer;
-        font-weight: 300;
+        font-weight: 500;
+        color: var(--success);
       }
 
       .game-rule li {
@@ -160,7 +161,7 @@
         width: 130px;
         min-height: 50px;
         font-weight: bold;
-        background-color: var(--primary);
+        background-color: var(--success);
         color: var(--text);
         border-radius: 0.7rem;
         border: none;
@@ -492,8 +493,10 @@
       </div>
       <p class="link">
         If you would like to go back to the coin flip game,
-        <a href="https://ll-vn.github.io/coin-game/" class="coin-link">Click here.</a> By the way, it
-        was nice having you around.
+        <a href="https://ll-vn.github.io/coin-game/" class="coin-link"
+          >Click here.</a
+        >
+        By the way, it was nice having you around.
       </p>
     </div>
 
@@ -568,10 +571,10 @@
         document.body.style.overflow = "";
       });
 
-      document.querySelector('#close-btn').addEventListener("click", () => {
+      document.querySelector("#close-btn").addEventListener("click", () => {
         document.querySelector(".game-rule").classList.remove("open");
         document.body.style.overflow = "";
-      })
+      });
 
       // Sound toggle functionality
       soundToggleBtn.addEventListener("click", () => {
@@ -590,7 +593,7 @@
 
       let wasPlaying = false;
 
-      document.addEventListener("visibilityChange", () => {
+      document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
           wasPlaying = !backgroundSound.paused;
           backgroundSound.pause();
@@ -627,8 +630,10 @@
 
       document.getElementById("rock-btn").addEventListener("click", () => {
         if (isStarted) {
-          clickSound.currentTime = 0;
-          clickSound.play();
+          if (!backgroundSound.muted) {
+            clickSound.currentTime = 0;
+            clickSound.play();
+          }
           playGame("rock");
           document.getElementById("rock-btn").classList.add("bounce");
           setTimeout(
@@ -645,8 +650,10 @@
 
       document.getElementById("paper-btn").addEventListener("click", () => {
         if (isStarted) {
-          clickSound.currentTime = 0;
-          clickSound.play();
+          if (!backgroundSound.muted) {
+            clickSound.currentTime = 0;
+            clickSound.play();
+          }
           playGame("paper");
           document.getElementById("paper-btn").classList.add("bounce");
           setTimeout(
@@ -663,8 +670,10 @@
 
       document.getElementById("scissors-btn").addEventListener("click", () => {
         if (isStarted) {
-          clickSound.currentTime = 0;
-          clickSound.play();
+          if (!backgroundSound.muted) {
+            clickSound.currentTime = 0;
+            clickSound.play();
+          }
           playGame("scissors");
           document.getElementById("scissors-btn").classList.add("bounce");
           setTimeout(
